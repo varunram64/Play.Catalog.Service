@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Service", "Play.Catalog.Service\Play.Catalog.Service.csproj", "{44431C4A-F19F-4E6D-B700-9F54C334337E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Entities", "Play.Catalog.Entities\Play.Catalog.Entities.csproj", "{E352C890-5598-4C84-B326-823EFEF6FA78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Repository", "Play.Catalog.Repository\Play.Catalog.Repository.csproj", "{B8046DFF-E717-45A7-9ABB-BFF5C8A4EE2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{44431C4A-F19F-4E6D-B700-9F54C334337E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44431C4A-F19F-4E6D-B700-9F54C334337E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44431C4A-F19F-4E6D-B700-9F54C334337E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E352C890-5598-4C84-B326-823EFEF6FA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E352C890-5598-4C84-B326-823EFEF6FA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E352C890-5598-4C84-B326-823EFEF6FA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E352C890-5598-4C84-B326-823EFEF6FA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8046DFF-E717-45A7-9ABB-BFF5C8A4EE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8046DFF-E717-45A7-9ABB-BFF5C8A4EE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8046DFF-E717-45A7-9ABB-BFF5C8A4EE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8046DFF-E717-45A7-9ABB-BFF5C8A4EE2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
