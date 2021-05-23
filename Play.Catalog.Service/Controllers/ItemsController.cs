@@ -24,7 +24,7 @@ namespace Play.Catalog.Service.Controllers
         {
             new ItemDTO(Guid.NewGuid(), "Potion", "Restores a small amount of HP", 5, DateTimeOffset.UtcNow),
             new ItemDTO(Guid.NewGuid(), "Antidode", "Cures poison", 7, DateTimeOffset.UtcNow),
-            new ItemDTO(Guid.NewGuid(), "Bonze Sword", "Deals a small amount of damage", 20, DateTimeOffset.UtcNow),
+            new ItemDTO(Guid.NewGuid(), "Bronze Sword", "Deals a small amount of damage", 20, DateTimeOffset.UtcNow),
         };
 
         [HttpGet]
