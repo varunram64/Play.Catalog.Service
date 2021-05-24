@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Service", "Play.Catalog.Service\Play.Catalog.Service.csproj", "{44431C4A-F19F-4E6D-B700-9F54C334337E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Play.Catalog.Service", "Play.Catalog.Service\Play.Catalog.Service.csproj", "{44431C4A-F19F-4E6D-B700-9F54C334337E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Entities", "Play.Catalog.Entities\Play.Catalog.Entities.csproj", "{E352C890-5598-4C84-B326-823EFEF6FA78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Play.Catalog.Entities", "Play.Catalog.Entities\Play.Catalog.Entities.csproj", "{E352C890-5598-4C84-B326-823EFEF6FA78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Repository", "Play.Catalog.Repository\Play.Catalog.Repository.csproj", "{B8046DFF-E717-45A7-9ABB-BFF5C8A4EE2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Play.Catalog.Repository", "Play.Catalog.Repository\Play.Catalog.Repository.csproj", "{B8046DFF-E717-45A7-9ABB-BFF5C8A4EE2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
