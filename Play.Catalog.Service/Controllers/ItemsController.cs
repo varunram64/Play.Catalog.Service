@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Play.Catalog.Entities;
+using Play.Catalog.Service.Entities;
 using Play.Common.IRepository;
 using Play.Catalog.Service.DTOs;
 using System;
