@@ -1,4 +1,4 @@
-﻿using Play.Catalog.Service.Entities;
+﻿using Play.Catalog.Entities;
 using Play.Catalog.Service.DTOs;
 
 namespace Play.Catalog.Service

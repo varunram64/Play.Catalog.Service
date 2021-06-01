@@ -1,7 +1,7 @@
 ﻿using Play.Common.Entities;
 using System;
 
-namespace Play.Catalog.Service.Entities
+namespace Play.Catalog.Entities
 {
     public class Items : IEntity
     {

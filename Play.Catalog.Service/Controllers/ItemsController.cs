@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Play.Catalog.Service.Entities;
+using Play.Catalog.Entities;
 using Play.Common.IRepository;
 using Play.Catalog.Service.DTOs;
 using System;
@@ -20,12 +20,12 @@ namespace Play.Catalog.Service.Controllers
             _itemsRepository = itemsRepository;
         }
 
-        private static readonly List<ItemDTO> items = new()
-        {
-            new ItemDTO(Guid.NewGuid(), "Potion", "Restores a small amount of HP", 5, DateTimeOffset.UtcNow),
-            new ItemDTO(Guid.NewGuid(), "Antidode", "Cures poison", 7, DateTimeOffset.UtcNow),
-            new ItemDTO(Guid.NewGuid(), "Bronze Sword", "Deals a small amount of damage", 20, DateTimeOffset.UtcNow),
-        };
+        //private static readonly List<ItemDTO> items = new()
+        //{
+        //    new ItemDTO(Guid.NewGuid(), "Potion", "Restores a small amount of HP", 5, DateTimeOffset.UtcNow),
+        //    new ItemDTO(Guid.NewGuid(), "Antidode", "Cures poison", 7, DateTimeOffset.UtcNow),
+        //    new ItemDTO(Guid.NewGuid(), "Bronze Sword", "Deals a small amount of damage", 20, DateTimeOffset.UtcNow),
+        //};
 
         [HttpGet]
         public async Task<IEnumerable<ItemDTO>> Get()
