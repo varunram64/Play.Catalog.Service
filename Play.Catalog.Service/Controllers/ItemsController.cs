@@ -82,7 +82,7 @@ namespace Play.Catalog.Service.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(Guid id, UpdateItemDTO updateItemDTO)
         {
-            var existingItem = await _itemsRepository.Get(id);
+            var existingItem = await _itemsRepository.GetAsync(id);
 
             if (existingItem == null)
                 return NotFound();
