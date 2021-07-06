@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Play.Catalog.Entities;
-using Play.Common.MongoDB;
+using Play.Common;
 
 namespace Play.Catalog.Service
 {

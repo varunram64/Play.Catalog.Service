@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Play.Catalog.Entities;
-using Play.Common;
 using Play.Catalog.Service.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Play.Common.IRepository;
 
 namespace Play.Catalog.Service.Controllers
 {
@@ -13,10 +13,10 @@ namespace Play.Catalog.Service.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly IRepository<Items> _itemsRepository;
+        private readonly IMongoRepository<Items> _itemsRepository;
         private static int RequestCounter;
 
-        public ItemsController(IRepository<Items> itemsRepository)
+        public ItemsController(IMongoRepository<Items> itemsRepository)
         {
             _itemsRepository = itemsRepository;
         }
@@ -31,22 +31,22 @@ namespace Play.Catalog.Service.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ItemDTO>>> Get()
         {
-            RequestCounter++;
-            Console.WriteLine($"Request {RequestCounter} Starting...");
+            //RequestCounter++;
+            //Console.WriteLine($"Request {RequestCounter} Starting...");
 
-            if(RequestCounter < 2)
-            {
-                Console.WriteLine($"Request delaying {RequestCounter} Starting...");
-                await Task.Delay(TimeSpan.FromSeconds(10));
-            }
+            //if(RequestCounter < 2)
+            //{
+            //    Console.WriteLine($"Request delaying {RequestCounter} Starting...");
+            //    await Task.Delay(TimeSpan.FromSeconds(10));
+            //}
 
-            if (RequestCounter < 4)
-            {
-                Console.WriteLine($"Request {RequestCounter}: 500(Internal Server Error)");
-                return StatusCode(500);
-            }
+            //if (RequestCounter < 4)
+            //{
+            //    Console.WriteLine($"Request {RequestCounter}: 500(Internal Server Error)");
+            //    return StatusCode(500);
+            //}
 
-            var items = (await _itemsRepository.GetAllAsync())
+            var items = (await _itemsRepository.GetAll())
                         .Select(x => x.AsDTO());
             Console.WriteLine($"Request {RequestCounter}: 200(Ok)");
             return Ok(items);
@@ -55,7 +55,7 @@ namespace Play.Catalog.Service.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ItemDTO>> GetById(Guid id)
         {
-            var item = await _itemsRepository.GetAsync(id);
+            var item = await _itemsRepository.Get(id);
 
             if (item == null)
                 return NotFound();
@@ -74,7 +74,7 @@ namespace Play.Catalog.Service.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            await _itemsRepository.CreateAsync(item);
+            await _itemsRepository.Create(item);
 
             return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
         }
@@ -82,7 +82,7 @@ namespace Play.Catalog.Service.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(Guid id, UpdateItemDTO updateItemDTO)
         {
-            var existingItem = await _itemsRepository.GetAsync(id);
+            var existingItem = await _itemsRepository.Get(id);
 
             if (existingItem == null)
                 return NotFound();
@@ -91,17 +91,17 @@ namespace Play.Catalog.Service.Controllers
             existingItem.Description = updateItemDTO.Description;
             existingItem.Price = updateItemDTO.Price;
 
-            await _itemsRepository.UpdateAsync(existingItem);
+            await _itemsRepository.Update(existingItem);
             return NoContent();
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var existingItem = await _itemsRepository.GetAsync(id);
+            var existingItem = await _itemsRepository.Get(id);
             if (existingItem == null)
                 return NotFound();
-            await _itemsRepository.RemoveAsync(existingItem.Id);
+            await _itemsRepository.Delete(existingItem.Id);
             return NoContent();
         }
     }
