@@ -6,11 +6,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Play.Catalog.Entities;
 using Play.Common;
+using Play.Common.MassTransit;
+using Play.Common.Settings;
 
 namespace Play.Catalog.Service
 {
     public class Startup
     {
+        private ServiceSettings serviceSettings;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -21,8 +25,11 @@ namespace Play.Catalog.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+
             services.AddMongo()
-                    .AddMongoRepository<Items>("Items");
+                    .AddMongoRepository<Items>("Items")
+                    .AddMassTransitWithRabbitMq();
 
             services.AddControllers(c =>
             {

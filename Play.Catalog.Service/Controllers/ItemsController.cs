@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Play.Common.IRepository;
+using MassTransit;
+using static Play.Catalog.Contracts.Constracts;
 
 namespace Play.Catalog.Service.Controllers
 {
@@ -14,11 +16,13 @@ namespace Play.Catalog.Service.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly IMongoRepository<Items> _itemsRepository;
-        private static int RequestCounter;
+        private readonly IPublishEndpoint _publishEndpoint;
+        //private static int RequestCounter;
 
-        public ItemsController(IMongoRepository<Items> itemsRepository)
+        public ItemsController(IMongoRepository<Items> itemsRepository, IPublishEndpoint publishEndpoint)
         {
             _itemsRepository = itemsRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         //private static readonly List<ItemDTO> items = new()
@@ -48,7 +52,7 @@ namespace Play.Catalog.Service.Controllers
 
             var items = (await _itemsRepository.GetAll())
                         .Select(x => x.AsDTO());
-            Console.WriteLine($"Request {RequestCounter}: 200(Ok)");
+            //Console.WriteLine($"Request {RequestCounter}: 200(Ok)");
             return Ok(items);
         }
 
@@ -76,6 +80,8 @@ namespace Play.Catalog.Service.Controllers
 
             await _itemsRepository.Create(item);
 
+            await _publishEndpoint.Publish(new CatalogItemCreated(item.Id, item.Name, item.Description));
+
             return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
         }
 
@@ -92,6 +98,9 @@ namespace Play.Catalog.Service.Controllers
             existingItem.Price = updateItemDTO.Price;
 
             await _itemsRepository.Update(existingItem);
+
+            await _publishEndpoint.Publish(new CatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description));
+
             return NoContent();
         }
 
@@ -101,7 +110,11 @@ namespace Play.Catalog.Service.Controllers
             var existingItem = await _itemsRepository.Get(id);
             if (existingItem == null)
                 return NotFound();
+
             await _itemsRepository.Delete(existingItem.Id);
+
+            await _publishEndpoint.Publish(new CatalogItemDeleted(existingItem.Id));
+
             return NoContent();
         }
     }
